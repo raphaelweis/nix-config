@@ -48,8 +48,17 @@ in
   services = {
     xserver = {
       enable = true;
-      displayManager.sddm.enable = true;
-      desktopManager.plasma5.enable = true;
+      displayManager = {
+        sddm.enable = true;
+        defaultSession = "none+awesome";
+      };
+      windowManager.awesome = {
+        enable = true;
+        luaModules = with pkgs.luaPackages; [
+          luarocks
+          luadbi-mysql
+        ];
+      };
       libinput.enable = true;
       layout = "us";
       xkbVariant = "intl";
