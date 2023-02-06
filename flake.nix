@@ -12,10 +12,7 @@
   outputs = { self, nixpkgs, home-manager }:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      };
+      pkgs = nixpkgs.legacyPackages.${system};
       lib = nixpkgs.lib;
       user = "raphaelw";
     in {
@@ -25,16 +22,12 @@
           modules = [ ./configuration.nix ];
         };
       };
-      homeManagerConfig = {
-        userConfig = home-manager.lib.homeManagerConfiguration {
-          inherit system pkgs;
-          username = "${user}";
-          homeDirectory = "/home/${user}";
-          configuration = {
-            imports = [
-              ./home.nix
-            ];
-          };
+      homeConfigurations = {
+        raphaelw = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            ./home.nix
+          ];
         };
       };
     };
