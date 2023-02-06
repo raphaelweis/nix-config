@@ -12,7 +12,10 @@
   outputs = { self, nixpkgs, home-manager }:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      #pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs {
+        config = { allowUnfree = true; };
+      };
       lib = nixpkgs.lib;
       user = "raphaelw";
     in {
