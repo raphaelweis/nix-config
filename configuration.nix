@@ -50,8 +50,9 @@ in
       enable = true;
       displayManager = {
         sddm.enable = true;
-        defaultSession = "none+awesome";
+        defaultSession = "plasma";
       };
+      desktopManager.plasma5.enable = true;
       windowManager.awesome = {
         enable = true;
         luaModules = with pkgs.luaPackages; [
