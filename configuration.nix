@@ -21,6 +21,7 @@ in
         efiSupport = true;
         efiInstallAsRemovable = true;
       };
+    timeout = 10;
     };
   };
 
@@ -75,7 +76,7 @@ in
   };
 
   fonts.fonts = with pkgs; [
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
   ];
 
   users.users.${user} = {
