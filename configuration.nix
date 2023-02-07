@@ -74,6 +74,10 @@ in
     bluetooth.enable = true;
   };
 
+  fonts.fonts = with pkgs; [
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+  ];
+
   users.users.${user} = {
     description = "${userFullName}";
     isNormalUser = true;
