@@ -10,6 +10,7 @@
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     alacritty
+    neovim
     vscode
     spotify
     discord
