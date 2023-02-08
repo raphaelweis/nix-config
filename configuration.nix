@@ -51,9 +51,9 @@ in
       enable = true;
       displayManager = {
         sddm.enable = true;
-        defaultSession = "plasma";
+        defaultSession = "gnome";
       };
-      desktopManager.plasma5.enable = true;
+      desktopManager.gnome.enable = true;
       windowManager.awesome = {
         enable = true;
         luaModules = with pkgs.luaPackages; [
@@ -82,14 +82,18 @@ in
   users.users.${user} = {
     description = "${userFullName}";
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel libvirtd" ];
   };
+  
+  virtualisation.libvirtd.enable = true;
+  programs.dconf.enable = true;
 
   environment.systemPackages = with pkgs; [
     vim
     git
     gh
     firefox
+    virt-manager
   ];
 
   nix = {
