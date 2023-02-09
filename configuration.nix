@@ -28,7 +28,7 @@ in
   users.users.${user} = {
     description = "${userFullName}";
     isNormalUser = true;
-    extraGroups = [ "wheel libvirtd" ];
+    extraGroups = [ "wheel" "libvirtd" ];
     shell = pkgs.zsh;
   };
  
