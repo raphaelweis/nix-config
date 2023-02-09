@@ -15,6 +15,13 @@
     spotify
     discord
   ];
+  
+  programs.zsh = {
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "powerlevel10k" ];
+    };
+  };
 
   home.stateVersion = "22.11";
 }

@@ -25,6 +25,13 @@ in
     };
   };
 
+  users.users.${user} = {
+    description = "${userFullName}";
+    isNormalUser = true;
+    extraGroups = [ "wheel libvirtd" ];
+    shell = pkgs.zsh;
+  };
+ 
   networking = {
     hostName = "nixos";
     networkmanager.enable = true;
@@ -78,23 +85,20 @@ in
   fonts.fonts = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
   ];
-
-  users.users.${user} = {
-    description = "${userFullName}";
-    isNormalUser = true;
-    extraGroups = [ "wheel libvirtd" ];
-  };
-  
+ 
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    vim
-    git
-    gh
-    firefox
-    virt-manager
-  ];
+  environment = {
+    systemPackages = with pkgs; [
+      vim
+      git
+      gh
+      firefox
+      virt-manager
+    ];
+    shells = with pkgs; [ zsh ];
+  };
 
   nix = {
     package = pkgs.nixFlakes;
