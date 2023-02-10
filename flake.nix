@@ -23,6 +23,7 @@
       nixosConfigurations = {
         basicConfig = lib.nixosSystem {
           inherit system pkgs;
+          inherit (nixpkgs) lib;
           modules = [
             ./configuration.nix
             home-manager.nixosModules.home-manager {

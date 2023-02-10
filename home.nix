@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   programs.home-manager.enable = true;
@@ -17,10 +17,26 @@
   ];
   
   programs.zsh = {
-    oh-my-zsh = {
-      enable = true;
-      plugins = [ "powerlevel10k" ];
+    enable = true;
+    shellAliases = {
+      la = "ls -la";
     };
+    zplug = {
+      enable = true;
+      plugins = [
+        { name = "zsh-users/zsh-autosuggestions"; }
+      ];
+    };
+    plugins = [
+      {
+        name = "powerlevel10k";
+        src = pkgs.zsh-powerlevel10k;
+        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+      }
+    ];
+    initExtraBeforeCompInit = ''
+      source ~/.p10k.zsh
+    '';
   };
 
   home.stateVersion = "22.11";
