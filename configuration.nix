@@ -74,6 +74,7 @@ in
     };
     printing.enable = true;
     openssh.enable = true;
+    flatpak.enable = true;
   };
 
   sound.enable = true;
