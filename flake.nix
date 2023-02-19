@@ -1,5 +1,5 @@
 {
-  description = "A very basic flake";
+  description = "A not so basic flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
@@ -9,30 +9,33 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager }:
+  outputs = inputs @ { self, nixpkgs, home-manager }:
     let
-      system = "x86_64-linux";
-      #pkgs = nixpkgs.legacyPackages.${system};
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      };
-      lib = nixpkgs.lib;
+      # pkgs = import nixpkgs {
+      #   inherit system;
+      #   config.allowUnfree = true;
+      # };
       user = "raphaelw";
     in {
-      nixosConfigurations = {
-        basicConfig = lib.nixosSystem {
-          inherit system pkgs;
+      # nixosConfigurations = {
+      #   basicConfig = lib.nixosSystem {
+      #     inherit system pkgs;
+      #     inherit (nixpkgs) lib;
+      #     modules = [
+      #       ./configuration.nix
+      #       home-manager.nixosModules.home-manager {
+      #         home-manager.useGlobalPkgs = true;
+      #         home-manager.useUserPackages = true;
+      #         home-manager.users.${user} = import ./home.nix;
+      #       }
+      #     ];
+      #   };
+      # };
+      nixosConfigurations = (
+        import ./hosts {
           inherit (nixpkgs) lib;
-          modules = [
-            ./configuration.nix
-            home-manager.nixosModules.home-manager {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${user} = import ./home.nix;
-            }
-          ];
-        };
-      };
+          inherit inputs nixpkgs home-manager user;
+        }
+      );
     };
 }

@@ -1,22 +1,20 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, user, ... }:
 
 {
   programs.home-manager.enable = true;
   home = {
-    username = "raphaelw";
-    homeDirectory = "/home/raphaelw";
+    username = "${user}";
+    homeDirectory = "/home/${user}";
+    packages = with pkgs; [
+      alacritty
+      neovim
+      vscode
+      spotify
+      discord
+      keepassxc
+    ];
   };
 
-  nixpkgs.config.allowUnfree = true;
-  home.packages = with pkgs; [
-    alacritty
-    neovim
-    vscode
-    spotify
-    discord
-    keepassxc
-  ];
-  
   programs = {
     zsh = {
       enable = true;
