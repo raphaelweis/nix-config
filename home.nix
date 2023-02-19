@@ -17,6 +17,7 @@
     distrobox
     keepassxc
     dropbox
+    docker
   ];
   
   programs.zsh = {
