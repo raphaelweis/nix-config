@@ -108,6 +108,7 @@ in
       gh
       firefox
       virt-manager
+      distrobox
     ];
     shells = with pkgs; [ zsh ];
   };

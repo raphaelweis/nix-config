@@ -14,7 +14,6 @@
     vscode
     spotify
     discord
-    distrobox
     keepassxc
   ];
   
