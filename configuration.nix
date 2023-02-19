@@ -88,7 +88,17 @@ in
     
   ];
  
-  virtualisation.libvirtd.enable = true;
+  virtualisation = {
+    libvirtd.enable = true;
+    docker = {
+      enable = true;
+      rootless = {
+    	enable = true;
+	setSocketVariable = true;
+      };
+    };
+  };
+
   programs.dconf.enable = true;
 
   environment = {

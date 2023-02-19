@@ -16,32 +16,36 @@
     discord
     distrobox
     keepassxc
-    dropbox
-    docker
   ];
   
-  programs.zsh = {
-    enable = true;
-    shellAliases = {
-      la = "ls -la";
-    };
-    zplug = {
+  programs = {
+    zsh = {
       enable = true;
+      shellAliases = {
+        la = "ls -la";
+      };
+      zplug = {
+        enable = true;
+        plugins = [
+          { name = "zsh-users/zsh-autosuggestions"; }
+          { name = "zsh-users/zsh-syntax-highlighting"; tags = [ defer:2 ]; }
+        ];
+      };
       plugins = [
-        { name = "zsh-users/zsh-autosuggestions"; }
-        { name = "zsh-users/zsh-syntax-highlighting"; tags = [ defer:2 ]; }
+        {
+          name = "powerlevel10k";
+          src = pkgs.zsh-powerlevel10k;
+          file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+        }
       ];
+      initExtraBeforeCompInit = ''
+        source ~/.p10k.zsh
+      '';
     };
-    plugins = [
-      {
-        name = "powerlevel10k";
-        src = pkgs.zsh-powerlevel10k;
-        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-      }
-    ];
-    initExtraBeforeCompInit = ''
-      source ~/.p10k.zsh
-    '';
+  };
+  
+  services = {
+    dropbox.enable = true;
   };
 
   home.stateVersion = "22.11";
