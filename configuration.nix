@@ -90,12 +90,10 @@ in
  
   virtualisation = {
     libvirtd.enable = true;
-    docker = {
+    podman = {
       enable = true;
-      rootless = {
-    	enable = true;
-	setSocketVariable = true;
-      };
+      dockerCompat = true;
+      defaultNetwork.dnsname.enable = true;
     };
   };
 
@@ -113,10 +111,11 @@ in
     shells = with pkgs; [ zsh ];
   };
 
-  nix = {
-    package = pkgs.nixFlakes;
-    extraOptions = "experimental-features = nix-command flakes";
-  };
+  #nix = {
+  #  package = pkgs.nixFlakes;
+  #  extraOptions = "experimental-features = nix-command flakes";
+  #};
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   system.stateVersion = "22.11";
 }
