@@ -14,7 +14,8 @@
     vscode
     spotify
     discord
-    stow
+    distrobox
+    keepassxc
   ];
   
   programs.zsh = {
