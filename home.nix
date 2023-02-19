@@ -16,6 +16,7 @@
     discord
     distrobox
     keepassxc
+    dropbox
   ];
   
   programs.zsh = {
