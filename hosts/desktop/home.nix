@@ -1,5 +1,2 @@
-{ config, pkgs, lib, user, ...}: {
-  home.packages = with pkgs; [
-    steam
-  ];
+{ config, pkgs, lib, user, ... }: {
 }
