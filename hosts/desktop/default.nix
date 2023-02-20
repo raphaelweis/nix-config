@@ -45,12 +45,16 @@
 
   virtualisation = {
     libvirtd.enable = true;
-    podman = {
+    docker = {
       enable = true;
-      dockerCompat = true;
-      defaultNetwork.dnsname.enable = true;
-    };
+      rootless = {
+        enable = true;
+  	setSocketVariable = true;
+      };
+     };
   };
+
+  users.users.${user}.extraGroups = [ "docker" ];
 
   programs.dconf.enable = true; #delete if gnome is no longer in use
 
