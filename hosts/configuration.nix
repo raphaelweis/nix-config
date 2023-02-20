@@ -4,11 +4,6 @@ let
   userFullName = "Raphaël Weis";
 in  
 {
-  # imports =
-  #   [
-  #     ./hardware-configuration.nix
-  #   ];
-
   # boot = {
   #   kernelPackages = pkgs.linuxPackages_latest;
   #   loader = {
@@ -99,6 +94,7 @@ in
     #   distrobox
     # ];
     shells = with pkgs; [ zsh ];
+    pathsToLink = [ "/share/zsh" ];
   };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
