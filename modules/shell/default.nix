@@ -1,4 +1,3 @@
 [
-  ./git.nix
-  ./zsh.nix
+  ./zsh/zsh.nix
 ]
