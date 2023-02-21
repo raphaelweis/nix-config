@@ -21,7 +21,7 @@
         {
           file = ".p10k.zsh";
           name = "powerlevel10k-config";
-          src = ../shell;
+          src = ./.;
         }
       ];
       initExtraBeforeCompInit = ''
