@@ -11,7 +11,6 @@
     username = "${user}";
     homeDirectory = "/home/${user}";
     packages = with pkgs; [
-      neovim
       vscode
       spotify
       discord
