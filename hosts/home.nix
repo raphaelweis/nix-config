@@ -16,6 +16,7 @@
       spotify
       discord
       keepassxc
+      thunderbird
     ];
   };
 
