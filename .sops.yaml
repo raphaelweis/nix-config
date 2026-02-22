@@ -1,7 +1,0 @@
-keys:
-  - &rDesktop age1gl7yg0sfv3rpxjw90xtq3y5hm462cnfm77y25hregrsudchpy92s548mjs
-creation_rules:
-  - path_regex: secrets.yaml$
-    key_groups:
-    - age:
-      - *rDesktop
