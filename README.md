@@ -1,6 +1,7 @@
 # My nixos configurations
 
-![the nixos logo on a black background](./assets/nixos-logo.svg)
+![The nixos logo on a white background](./assets/nixos-logo-black.svg#gh-light-mode-only)
+![The nixos logo on a black background](./assets/nixos-logo-white.svg#gh-dark-mode-only)
 
 This repository contains nixos configurations for my personal computers. it currently
 supports 2 hosts, my laptop and my desktop.
