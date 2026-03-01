@@ -3,7 +3,8 @@
   ...
 }:
 let
-  username = "raphaelw";
+  username = "raph";
+  name = "Raph";
 in
 {
   flake.modules.nixos.user =
@@ -11,6 +12,7 @@ in
     {
       users.users."${username}" = {
         isNormalUser = true;
+	description = "Raph";
         home = "/home/${username}";
         extraGroups = [
           "wheel"
