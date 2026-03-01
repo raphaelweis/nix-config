@@ -38,6 +38,34 @@ Every file is a 'feature' in dentritic terms, and each type of feature is
 highlighted
 by the different directories.
 
+## Flake output types
+
+This flake provides two types of outputs:
+
+#### 1. NixOS Configurations
+
+Allows you to manage system configurations via `nixos-rebuild` for a specific machine.
+
+#### 2. Wrapped Packages
+
+Uses `perSystem` from [flake-parts](https://github.com/hercules-ci/flake-parts) to define packages as flake outputs. These packages can be used in two ways:
+
+- **Included in a NixOS or home-manager configuration**:
+  Add them to `environment.systemPackages` or `home.packages` to make them
+  available on the host system (example:
+  `self.packages.${pkgs.stdenv.hostPlatform.system}.<package-name>`)
+
+- **Run directly with `nix run`**:
+  Execute flake outputs on any machine with Nix installed.
+
+---
+
+### Packages Exposed by This Flake
+
+| Package | Description                                                                                     | Run Command                                  |
+| ------- | ----------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| `nvim`  | My personal Neovim configuration, built with [nixvim](https://github.com/nix-community/nixvim). | `nix run github:raphaelweis/nix-config#nvim` |
+
 ## Tools I use
 
 | **Tool**            | **Name**                               |

@@ -23,6 +23,7 @@
         home-manager.follows = "home-manager";
       };
     };
+    nixvim.url = "github:nix-community/nixvim";
   };
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }

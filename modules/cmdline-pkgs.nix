@@ -1,3 +1,4 @@
+# { self, ... }:
 {
   flake.modules.nixos.cmdline-pkgs =
     { pkgs, ... }:
@@ -30,6 +31,8 @@
         jq
         gnumake
         tree
+
+        # self.packages.${pkgs.stdenv.hostPlatform.system}.nvim
       ];
     };
 }
