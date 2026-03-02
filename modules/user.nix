@@ -12,7 +12,7 @@ in
     {
       users.users."${username}" = {
         isNormalUser = true;
-	description = "Raph";
+        description = name;
         home = "/home/${username}";
         extraGroups = [
           "wheel"
