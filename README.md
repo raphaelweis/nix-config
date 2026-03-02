@@ -3,8 +3,15 @@
 ![The nixos logo on a white background](./assets/nixos-logo-black.svg#gh-light-mode-only)
 ![The nixos logo on a black background](./assets/nixos-logo-white.svg#gh-dark-mode-only)
 
-This repository contains nixos configurations for my personal computers. it currently
-supports 2 hosts, my laptop and my desktop.
+This repository contains nixos configurations for my personal computers / servers.
+
+It contains nixos configurations for the following hosts:
+
+| **Host name** | **Type** | **Comment**                |
+| ------------- | -------- | -------------------------- |
+| laptop        | desktop  | My personal laptop         |
+| desktop       | desktop  | My personal desktop        |
+| nanorion      | server   | Scaleway bare metal server |
 
 ## Structure
 
@@ -36,7 +43,9 @@ The structure is as follows:
 
 Every file is a 'feature' in dentritic terms, and each type of feature is
 highlighted
-by the different directories.
+by the different directories. A feature may apply to personal computers, to servers
+or to both. When a feature has specific configuration for the server machine type,
+the associated module is suffixed with `-server` (example: [`boot.nix`](./modules/system/boot.nix))
 
 ## Flake output types
 
@@ -78,3 +87,17 @@ Uses `perSystem` from [flake-parts](https://github.com/hercules-ci/flake-parts) 
 
 Here is a screenshot of my current system:
 ![a screenshot of my current desktop with a terminal containing a neofetch output](./assets/desktop_screenshot_28-02-26.png)
+
+## Rebuild commands
+
+For desktop configurations:
+
+```bash
+sudo nixos-rebuild switch --flake .#<configuration-name>
+```
+
+For server configurations:
+
+```bash
+nixos-rebuild switch --flake .#<configuration-name> --target-host "root@<server-ip>"
+```
