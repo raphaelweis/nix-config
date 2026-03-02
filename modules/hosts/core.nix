@@ -45,6 +45,7 @@
       vscode
       zen
       ghostty
+      spotify
 
       # desktop
       fonts
