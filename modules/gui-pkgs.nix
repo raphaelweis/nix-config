@@ -13,7 +13,6 @@
         zed-editor
         pgadmin4-desktopmode
         zathura
-        libreoffice
       ];
     };
 }
