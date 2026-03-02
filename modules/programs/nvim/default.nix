@@ -18,8 +18,19 @@
       nixvimConfigurations = {
         nvim = inputs.nixvim.lib.evalNixvim {
           inherit system;
-          modules = [
-            self.modules.nixvimModules.colorscheme
+          modules = with self.modules.nixvimModules; [
+            neovim
+            options
+            keymaps
+            colorscheme
+            tmux-navigator
+            telescope
+            conform
+            lsp
+            treesitter
+            oil
+            gitsigns
+            completion
           ];
         };
       };

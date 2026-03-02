@@ -1,4 +1,4 @@
-# { self, ... }:
+{ self, ... }:
 {
   flake.modules.nixos.cmdline-pkgs =
     { pkgs, ... }:
@@ -32,7 +32,7 @@
         gnumake
         tree
 
-        # self.packages.${pkgs.stdenv.hostPlatform.system}.nvim
+        self.packages.${pkgs.stdenv.hostPlatform.system}.nvim
       ];
     };
 }

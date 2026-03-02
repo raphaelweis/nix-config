@@ -32,7 +32,6 @@
     imports = with self.modules.homeManager; [
       # cmdline
       cmdline-pkgs
-      nvim
       tmux
       fzf
       gh
