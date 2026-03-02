@@ -7,6 +7,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # stable nixpkgs for server
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
+
     # dentritic pattern: flake-parts + import-tree
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -24,6 +27,10 @@
       };
     };
     nixvim.url = "github:nix-community/nixvim";
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
   };
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }
