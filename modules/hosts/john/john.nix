@@ -3,11 +3,14 @@
   self,
   ...
 }:
+let
+  hostname = "john";
+in
 {
-  flake.nixosConfigurations = inputs.self.lib.mkNixos "x86_64-linux" "desktop";
+  flake.nixosConfigurations = inputs.self.lib.mkNixos "x86_64-linux" hostname;
 
-  flake.modules.nixos.desktop = {
-    networking.hostName = "raph-desktop";
+  flake.modules.nixos.${hostname} = {
+    networking.hostName = hostname;
 
     boot.kernelParams = [
       "amd_pstate=active"
@@ -47,13 +50,16 @@
       };
     };
 
-    imports = with self.modules.nixos; [ core ];
-    home-manager.sharedModules = [ self.modules.homeManager.desktop ];
+    imports = with self.modules.nixos; [
+      desktop
+      ./_hardware-configuration.nix
+    ];
+    home-manager.sharedModules = [ self.modules.homeManager.${hostname} ];
 
     system.stateVersion = "25.05";
   };
 
-  flake.modules.homeManager.desktop = {
+  flake.modules.homeManager.${hostname} = {
     home.stateVersion = "25.05";
   };
 }

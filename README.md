@@ -1,16 +1,16 @@
-# My nixos configurations
+# My NixOS configurations
 
 ![The nixos logo on a white background](./assets/nixos-logo-black.svg#gh-light-mode-only)
 ![The nixos logo on a black background](./assets/nixos-logo-white.svg#gh-dark-mode-only)
 
-This repository contains nixos configurations for my personal computers / servers.
+This repository contains NixOS configurations for my personal computers / servers.
 
 It contains nixos configurations for the following hosts:
 
 | **Host name** | **Type** | **Comment**                |
 | ------------- | -------- | -------------------------- |
-| laptop        | desktop  | My personal laptop         |
-| desktop       | desktop  | My personal desktop        |
+| interstellar  | desktop  | My personal laptop         |
+| john          | desktop  | My personal desktop        |
 | nanorion      | server   | Scaleway bare metal server |
 
 ## Structure
@@ -31,13 +31,14 @@ The structure is as follows:
 
 ```
 ├── assets # external assets such as pictures and fonts
-└── modules # all flake-parts modules
+└── modules # flake-parts modules
     ├── desktop # desktop environment related configuration (cursor config, xdg config, ...)
     ├── hosts # per host configuration
-    │   ├── desktop # my personal desktop
-    │   └── laptop # my personal laptop
+    │   ├── interstellar
+    │   ├── john
+    │   └── nanorion
     ├── programs # programs to enable and their optional configuration
-    ├── services # standalone services or daemons
+    ├── services # services or daemons
     └── system # system-level configuration (bootloader, bluetooth, ...)
 ```
 

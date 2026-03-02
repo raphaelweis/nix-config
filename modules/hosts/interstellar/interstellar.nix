@@ -3,13 +3,16 @@
   self,
   ...
 }:
+let
+  hostname = "interstellar";
+in
 {
-  flake.nixosConfigurations = inputs.self.lib.mkNixos "x86_64-linux" "laptop";
+  flake.nixosConfigurations = inputs.self.lib.mkNixos "x86_64-linux" hostname;
 
-  flake.modules.nixos.laptop =
+  flake.modules.nixos.${hostname} =
     { lib, pkgs, ... }:
     {
-      networking.hostName = "raph-laptop";
+      networking.hostName = hostname;
 
       boot = {
         # Fix suspend (lenovo yoga slim 7 issue)
@@ -72,13 +75,16 @@
           ];
       };
 
-      imports = with self.modules.nixos; [ core ];
-      home-manager.sharedModules = [ self.modules.homeManager.laptop ];
+      imports = with self.modules.nixos; [
+        desktop
+        ./_hardware-configuration.nix
+      ];
+      home-manager.sharedModules = [ self.modules.homeManager.${hostname} ];
 
       system.stateVersion = "25.05";
     };
 
-  flake.modules.homeManager.laptop = {
+  flake.modules.homeManager.${hostname} = {
     home.stateVersion = "25.05";
   };
 }

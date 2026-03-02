@@ -3,7 +3,7 @@
   ...
 }:
 {
-  flake.modules.nixos.core = {
+  flake.modules.nixos.desktop = {
     imports = with self.modules.nixos; [
       # system
       boot
@@ -25,10 +25,10 @@
       # misc
       home-manager
     ];
-    home-manager.sharedModules = [ self.modules.homeManager.core ];
+    home-manager.sharedModules = [ self.modules.homeManager.desktop ];
   };
 
-  flake.modules.homeManager.core = {
+  flake.modules.homeManager.desktop = {
     imports = with self.modules.homeManager; [
       # cmdline
       cmdline-pkgs
