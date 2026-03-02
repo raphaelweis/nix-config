@@ -23,6 +23,7 @@
             options
             keymaps
             colorscheme
+            autopairs
             tmux-navigator
             telescope
             conform
