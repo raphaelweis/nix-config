@@ -6,6 +6,9 @@
   };
 
   flake.modules.nixos.networking-server = {
-    networking.firewall.allowedTCPPorts = [ 22 ];
+    networking.firewall = {
+      enable = true;
+      allowedTCPPorts = [ 22 ];
+    };
   };
 }

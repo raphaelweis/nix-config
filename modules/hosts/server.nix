@@ -6,6 +6,7 @@
       boot-server
       networking-server
       ssh-server
+      fail2ban-server
     ];
   };
 }
