@@ -3,6 +3,7 @@
     keymaps = [
       {
         key = "<ESC>";
+        mode = "n";
         action = "<CMD>noh<CR>";
       }
       {

@@ -4,6 +4,7 @@
     keymaps = [
       {
         key = "<leader>e";
+        mode = "n";
         action = "<CMD>Oil<CR>";
       }
     ];
