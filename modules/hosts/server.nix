@@ -7,6 +7,7 @@
       networking-server
       ssh-server
       fail2ban-server
+      sops-server
     ];
   };
 }

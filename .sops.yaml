@@ -1,0 +1,9 @@
+keys:
+  - &admin_interstellar age1eu7mf5gkqdqemvkuaq93fwwy67dkqu3vc6mpyjtf7stz3n3h4eks5p94x5
+  - &server_nanorion age18jfep2kqy2cfg003perzgye3ven02ze06nlhmegs6rddluye43nq57sx03
+creation_rules:
+  - path_regex: \.secrets\.yaml$
+    key_groups:
+    - age:
+      - *admin_interstellar
+      - *server_nanorion

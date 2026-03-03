@@ -31,6 +31,10 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
   };
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }
