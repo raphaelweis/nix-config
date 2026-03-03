@@ -24,6 +24,7 @@
             keymaps
             colorscheme
             autopairs
+            fugitive
             tmux-navigator
             telescope
             conform
@@ -32,6 +33,7 @@
             oil
             gitsigns
             completion
+            diffs
           ];
         };
       };

@@ -1,25 +1,27 @@
 {
-  flake.modules.nixvimModules.options = {
-    globals.mapleader = " ";
-    opts = {
-      number = true;
-      relativenumber = true;
-      tabstop = 2;
-      shiftwidth = 2;
+  flake.modules.nixvimModules.options =
+    { pkgs, ... }:
+    {
+      globals.mapleader = " ";
       clipboard = {
-        providers.wl-copy.enable = true;
         register = "unnamedplus";
+        providers.wl-copy.enable = pkgs.stdenv.hostPlatform.isLinux;
       };
-      swapfile = false;
-      signcolumn = "yes";
-      winborder = "rounded";
-      expandtab = true;
-      undofile = true;
-      colorcolumn = "80";
-      foldenable = false;
+      opts = {
+        number = true;
+        relativenumber = true;
+        tabstop = 2;
+        shiftwidth = 2;
+        swapfile = false;
+        signcolumn = "yes";
+        winborder = "rounded";
+        expandtab = true;
+        undofile = true;
+        colorcolumn = "80";
+        foldenable = false;
+      };
+      diagnostic.settings = {
+        virtual_text = true;
+      };
     };
-    diagnostic.settings = {
-      virtual_text = true;
-    };
-  };
 }

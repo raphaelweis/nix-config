@@ -1,6 +1,6 @@
 {
   flake.modules.homeManager.git = {
-    # Use git, with lazygit as a TUI and delta as a diff viewer
+    # Use git and delta as a diff viewer
     programs = {
       git = {
         enable = true;
@@ -11,15 +11,6 @@
           };
           pull.rebase = true;
           push.autoSetupRemote = true;
-        };
-      };
-      lazygit = {
-        enable = true;
-        enableZshIntegration = true;
-        settings = {
-          git.pagers = [
-            { pager = "delta --dark --paging=never"; }
-          ];
         };
       };
       delta = {

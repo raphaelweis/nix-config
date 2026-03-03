@@ -3,8 +3,8 @@
     plugins.oil.enable = true;
     keymaps = [
       {
-        key = "<leader>e";
         mode = "n";
+        key = "<leader>e";
         action = "<CMD>Oil<CR>";
       }
     ];
