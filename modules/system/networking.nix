@@ -2,6 +2,7 @@ let
   # Wireguard public keys
   laptopPublicWgKey = "w7fwgm+hQGEJ0Xcy4lBmhhs0zrcaN4L4pnFyUE7TQWs=";
   serverPublicWgKey = "QcVzCNTHYMU5p8VEAx6Jqr1GbRFFmoSr0XaHTdce7QY=";
+  phonePublicWgKey = "8b019h4NXPc6oBFTun+pp6oq4Xv9paDsYkCMIUjTaRE=";
 
   # Wireguard config values
   serverPublicIp = "195.154.105.239";
@@ -109,6 +110,10 @@ in
               {
                 publicKey = laptopPublicWgKey;
                 allowedIPs = [ "10.100.0.2/32" ];
+              }
+              {
+                publicKey = phonePublicWgKey;
+                allowedIPs = [ "10.100.0.3/32" ];
               }
             ];
           };
