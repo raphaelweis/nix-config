@@ -1,9 +1,17 @@
 keys:
-  - &admin_interstellar age1eu7mf5gkqdqemvkuaq93fwwy67dkqu3vc6mpyjtf7stz3n3h4eks5p94x5
-  - &server_nanorion age18jfep2kqy2cfg003perzgye3ven02ze06nlhmegs6rddluye43nq57sx03
+  # desktops
+  - &interstellar age1eu7mf5gkqdqemvkuaq93fwwy67dkqu3vc6mpyjtf7stz3n3h4eks5p94x5
+
+  # servers
+  - &nanorion age1x0dcfhnxfzt3dnykg7f7erj5m2l6maqtwje5scd5e27uyka7pawq36gl32
 creation_rules:
-  - path_regex: \.secrets\.yaml$
+  - path_regex: secrets/interstellar\.yaml$
     key_groups:
-    - age:
-      - *admin_interstellar
-      - *server_nanorion
+      - age:
+        - *interstellar
+
+  - path_regex: secrets/nanorion\.yaml$
+    key_groups:
+      - age:
+        - *interstellar
+        - *nanorion

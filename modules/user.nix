@@ -28,6 +28,8 @@ in
       };
       programs.zsh.enable = true;
 
+      sops.age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
+
       home-manager.users."${username}" = {
         imports = [
           self.modules.homeManager.user

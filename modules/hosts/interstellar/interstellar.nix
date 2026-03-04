@@ -14,6 +14,8 @@ in
     {
       networking.hostName = hostname;
 
+      sops.defaultSopsFile = ../../../secrets/interstellar.yaml;
+
       boot = {
         # Fix suspend (lenovo yoga slim 7 issue)
         # https://gitlab.freedesktop.org/drm/amd/-/issues/2812

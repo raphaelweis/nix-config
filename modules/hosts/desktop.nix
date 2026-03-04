@@ -24,6 +24,7 @@
 
       # misc
       home-manager
+      sops
     ];
     home-manager.sharedModules = [ self.modules.homeManager.desktop ];
   };

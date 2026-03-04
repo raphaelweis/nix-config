@@ -12,6 +12,8 @@ in
   flake.modules.nixos.${hostname} = {
     networking.hostName = hostname;
 
+    sops.defaultSopsFile = ../../../secrets/nanorion.yaml;
+
     imports = with self.modules.nixos; [
       server
       ./_hardware-configuration.nix

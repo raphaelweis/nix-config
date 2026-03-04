@@ -2,12 +2,16 @@
 {
   flake.modules.nixos.server = {
     imports = with self.modules.nixos; [
+      nix
+      sops
       disko-server
       boot-server
       networking-server
       ssh-server
       fail2ban-server
-      sops-server
     ];
+
+    # Override generic nix module settings with server specific settings
+    nixpkgs.config.allowUnfree = false;
   };
 }

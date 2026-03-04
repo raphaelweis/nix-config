@@ -1,14 +1,13 @@
 { inputs, ... }:
 {
-  flake.modules.nixos.sops-server = {
+  flake.modules.nixos.sops = {
     imports = [ inputs.sops-nix.nixosModules.sops ];
 
     sops = {
-      defaultSopsFile = ../.secrets.yaml;
-      age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-
       secrets = {
-        example_key = { };
+        wireguard_private_key = {
+          mode = "0400";
+        };
       };
     };
   };
