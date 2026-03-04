@@ -9,6 +9,7 @@
       networking-server
       ssh-server
       fail2ban-server
+      nextcloud-server
     ];
 
     # Override generic nix module settings with server specific settings

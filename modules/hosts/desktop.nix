@@ -46,6 +46,7 @@
       zen
       ghostty
       spotify
+      nextcloud
 
       # desktop
       fonts
