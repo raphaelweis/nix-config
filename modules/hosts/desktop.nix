@@ -21,6 +21,7 @@
 
       # desktop
       gnome
+      steam
 
       # misc
       home-manager
