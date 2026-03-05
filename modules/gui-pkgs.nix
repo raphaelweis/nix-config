@@ -13,6 +13,7 @@
         zed-editor
         pgadmin4-desktopmode
         zathura
+        keepassxc
       ];
     };
 }
