@@ -5,7 +5,7 @@
       {
         mode = "n";
         key = "<leader>;";
-        action = "<CMD>Git<CR>";
+        action = "<CMD>tab Git<CR>";
       }
     ];
   };
