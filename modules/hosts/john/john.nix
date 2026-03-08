@@ -12,6 +12,8 @@ in
   flake.modules.nixos.${hostname} = {
     networking.hostName = hostname;
 
+    sops.defaultSopsFile = ../../../secrets/${hostname}.yaml;
+
     boot.kernelParams = [
       "amd_pstate=active"
       "amd_pstate.shared_mem=1"

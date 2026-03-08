@@ -1,6 +1,7 @@
 let
   # Wireguard public keys
   laptopPublicWgKey = "w7fwgm+hQGEJ0Xcy4lBmhhs0zrcaN4L4pnFyUE7TQWs=";
+  desktopPublicWgKey = "qUSPkyMc5o8E/hzzjagVgRM88k2uWSFjGTuxE7ozIlY=";
   serverPublicWgKey = "QcVzCNTHYMU5p8VEAx6Jqr1GbRFFmoSr0XaHTdce7QY=";
   phonePublicWgKey = "8b019h4NXPc6oBFTun+pp6oq4Xv9paDsYkCMIUjTaRE=";
 
@@ -114,6 +115,10 @@ in
               {
                 publicKey = phonePublicWgKey;
                 allowedIPs = [ "10.100.0.3/32" ];
+              }
+              {
+                publicKey = desktopPublicWgKey;
+                allowedIPs = [ "10.100.0.4/32" ];
               }
             ];
           };

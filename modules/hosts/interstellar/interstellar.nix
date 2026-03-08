@@ -14,7 +14,7 @@ in
     {
       networking.hostName = hostname;
 
-      sops.defaultSopsFile = ../../../secrets/interstellar.yaml;
+      sops.defaultSopsFile = ../../../secrets/${hostname}.yaml;
 
       boot = {
         # Fix suspend (lenovo yoga slim 7 issue)
