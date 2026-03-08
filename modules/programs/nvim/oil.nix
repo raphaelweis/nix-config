@@ -1,6 +1,14 @@
 {
   flake.modules.nixvimModules.oil = {
-    plugins.oil.enable = true;
+    plugins.oil = {
+      enable = true;
+      settings = {
+        keymaps = {
+          "<C-l>" = false;
+          "<C-h>" = false;
+        };
+      };
+    };
     keymaps = [
       {
         mode = "n";
