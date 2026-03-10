@@ -19,6 +19,12 @@
           gnome-keyring.enable = true;
         };
       };
+
+      # make apps prefer wayland when possible
+      environment.sessionVariables = {
+        QT_QPA_PLATFORM = "wayland;xcb";
+        NIXOS_OZONE_WL = 1;
+      };
     };
 
   flake.modules.homeManager.gnome =
