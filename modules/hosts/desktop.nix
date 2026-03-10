@@ -48,6 +48,7 @@
       ghostty
       spotify
       nextcloud
+      excalidraw
 
       # desktop
       fonts

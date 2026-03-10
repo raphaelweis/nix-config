@@ -8,7 +8,7 @@
         nautilus
         quickshell
         netflix
-        google-chrome
+        chromium
         thunderbird
         zed-editor
         zathura
