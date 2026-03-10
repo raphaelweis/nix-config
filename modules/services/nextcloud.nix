@@ -13,7 +13,7 @@
       services.nextcloud = {
         enable = true;
         package = pkgs.nextcloud33;
-        hostName = config.networkingConstants.serverWgIp;
+        hostName = config.networking.custom-options.serverWgIp;
         database.createLocally = true;
         config = {
           dbtype = "pgsql";

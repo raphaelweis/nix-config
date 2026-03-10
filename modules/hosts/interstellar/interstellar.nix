@@ -12,7 +12,10 @@ in
   flake.modules.nixos.${hostname} =
     { lib, pkgs, ... }:
     {
-      networking.hostName = hostname;
+      networking = {
+        hostName = hostname;
+        custom-options.wireguardPeerIp = "10.100.0.2/32";
+      };
 
       sops.defaultSopsFile = ../../../secrets/${hostname}.yaml;
 

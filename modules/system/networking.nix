@@ -11,6 +11,21 @@ let
   wireguardPort = 51820;
 in
 {
+  flake.modules.nixos.networking-constants =
+    { lib, ... }:
+    {
+      options.networking.custom-options = {
+        serverWgIp = lib.mkOption {
+          type = lib.types.str;
+          description = "The WireGuard IP address of the server";
+        };
+        wireguardPeerIp = lib.mkOption {
+          type = lib.types.str;
+          description = "The Wireguard IP address for this machine (peer)";
+        };
+      };
+    };
+
   flake.modules.nixos.networking =
     {
       pkgs,
@@ -53,7 +68,7 @@ in
             allowed-ips=10.100.0.0/24;
 
             [ipv4]
-            address1=10.100.0.2/24
+            address1=${config.networking.custom-options.wireguardPeerIp}
             method=manual
 
             [ipv6]
@@ -77,21 +92,11 @@ in
     };
 
   flake.modules.nixos.networking-server =
-    { config, lib, ... }:
+    { config, ... }:
     {
-      # Define constants here, they may be accessed by other modules using the
-      # config attribute
-      options.networkingConstants = {
-        serverWgIp = lib.mkOption {
-          type = lib.types.str;
-          description = "The WireGuard IP address of the server";
-        };
-      };
       config = {
-        networkingConstants = {
-          inherit serverWgIp;
-        };
         networking = {
+          custom-options = { inherit serverWgIp; };
           firewall = {
             enable = true;
             allowedUDPPorts = [ wireguardPort ];
@@ -109,6 +114,8 @@ in
             privateKeyFile = config.sops.secrets.wireguard_private_key.path;
             peers = [
               {
+                # FIXME: find a way to not duplicate the peer ip between this file
+                # and each host's file
                 publicKey = laptopPublicWgKey;
                 allowedIPs = [ "10.100.0.2/32" ];
               }

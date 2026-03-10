@@ -15,6 +15,7 @@
       qt
       nix
       cmdline-pkgs
+      networking-constants
       networking
       flatpak
       docker
