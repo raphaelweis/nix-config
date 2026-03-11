@@ -1,27 +1,57 @@
 let
-  # Wireguard public keys
-  laptopPublicWgKey = "w7fwgm+hQGEJ0Xcy4lBmhhs0zrcaN4L4pnFyUE7TQWs=";
-  desktopPublicWgKey = "qUSPkyMc5o8E/hzzjagVgRM88k2uWSFjGTuxE7ozIlY=";
-  serverPublicWgKey = "QcVzCNTHYMU5p8VEAx6Jqr1GbRFFmoSr0XaHTdce7QY=";
-  phonePublicWgKey = "8b019h4NXPc6oBFTun+pp6oq4Xv9paDsYkCMIUjTaRE=";
-
-  # Wireguard config values
   serverPublicIp = "195.154.105.239";
-  serverWgIp = "10.100.0.1";
   wireguardPort = 51820;
+  wireguardPeers = {
+    nanorion = {
+      ip = "10.100.0.1/24";
+      publicKey = "QcVzCNTHYMU5p8VEAx6Jqr1GbRFFmoSr0XaHTdce7QY=";
+    };
+    interstellar = {
+      ip = "10.100.0.2/32";
+      publicKey = "w7fwgm+hQGEJ0Xcy4lBmhhs0zrcaN4L4pnFyUE7TQWs=";
+    };
+    ami = {
+      ip = "10.100.0.3/32";
+      publicKey = "8b019h4NXPc6oBFTun+pp6oq4Xv9paDsYkCMIUjTaRE=";
+    };
+    john = {
+      ip = "10.100.0.4/32";
+      publicKey = "qUSPkyMc5o8E/hzzjagVgRM88k2uWSFjGTuxE7ozIlY=";
+    };
+  };
 in
 {
-  flake.modules.nixos.networking-constants =
+  flake.modules.nixos.networking-shared =
     { lib, ... }:
-    {
-      options.networking.custom-options = {
-        serverWgIp = lib.mkOption {
-          type = lib.types.str;
-          description = "The WireGuard IP address of the server";
+    let
+      mkPeerOptions =
+        name:
+        { ip, publicKey }:
+        {
+          ip = lib.mkOption {
+            type = lib.types.str;
+            readOnly = true;
+            default = ip;
+            description = "The WireGuard IP address for the ${name} peer";
+          };
+          publicKey = lib.mkOption {
+            type = lib.types.str;
+            readOnly = true;
+            default = publicKey;
+            description = "The WireGuard public key for the ${name} peer";
+          };
         };
-        wireguardPeerIp = lib.mkOption {
+    in
+    {
+      # custom shared options that are used to configure the wireguard network.
+      # nixos hosts must explicitely set the peerIp option using the values in the
+      # peers attribute, so that the networking module can use the correct IP when
+      # writing the network manager connection file.
+      options.networking.custom.wireguard = {
+        peers = lib.mapAttrs mkPeerOptions wireguardPeers;
+        peerIp = lib.mkOption {
           type = lib.types.str;
-          description = "The Wireguard IP address for this machine (peer)";
+          description = "The Wireguard IP address for this machine (peer). Must be set by each host";
         };
       };
     };
@@ -36,21 +66,10 @@ in
     {
       environment.systemPackages = with pkgs; [ wireguard-tools ];
 
-      # I use networkmanager for desktops because it's the default on most desktop
-      # environments. NetworkManager is kind of not ideal to configure declaratively
-      # with NixOS. We could use networkmanager.profiles option to configure the
-      # wireguard connection, but it would write our private key to the nix store,
-      # which is insecure. To circumvent this, we write a regular network manager
-      # connection file using a sops template, and we then load this connection
-      # using a oneshot systemd service.
-      # Persistent keepalive is not needed since the server has a static public IP
-      # and we always initiate connections from the laptop.
       networking.networkmanager.enable = true;
 
       sops.templates."wg0-nm-profile" = {
         path = "/etc/NetworkManager/system-connections/wg0.nmconnection";
-
-        # make file readable only by root
         mode = "0600";
         content = # ini
           ''
@@ -63,12 +82,12 @@ in
             [wireguard]
             private-key=${config.sops.placeholder.wireguard_private_key}
 
-            [wireguard-peer.${serverPublicWgKey}]
+            [wireguard-peer.${config.networking.custom.wireguard.peers.nanorion.publicKey}]
             endpoint=${serverPublicIp}:${toString wireguardPort}
             allowed-ips=10.100.0.0/24;
 
             [ipv4]
-            address1=${config.networking.custom-options.wireguardPeerIp}
+            address1=${config.networking.custom.wireguard.peerIp}
             method=manual
 
             [ipv6]
@@ -77,7 +96,6 @@ in
           '';
       };
 
-      # oneshot systemd service that refires if the connection file contents changes
       systemd.services.nm-reload-wg0 = {
         description = "Reload NetworkManager wg0 wireguard profile";
         wantedBy = [ "multi-user.target" ];
@@ -92,16 +110,13 @@ in
     };
 
   flake.modules.nixos.networking-server =
-    { config, ... }:
+    { config, lib, ... }:
     {
       config = {
         networking = {
-          custom-options = { inherit serverWgIp; };
           firewall = {
             enable = true;
             allowedUDPPorts = [ wireguardPort ];
-
-            # Only open ports through wireguard network interface
             interfaces.wg0.allowedTCPPorts = [
               22
               80
@@ -109,25 +124,18 @@ in
             ];
           };
           wireguard.interfaces.wg0 = {
-            ips = [ "${serverWgIp}/24" ];
+            ips = [ config.networking.custom.wireguard.peers.nanorion.ip ];
             listenPort = wireguardPort;
             privateKeyFile = config.sops.secrets.wireguard_private_key.path;
-            peers = [
-              {
-                # FIXME: find a way to not duplicate the peer ip between this file
-                # and each host's file
-                publicKey = laptopPublicWgKey;
-                allowedIPs = [ "10.100.0.2/32" ];
-              }
-              {
-                publicKey = phonePublicWgKey;
-                allowedIPs = [ "10.100.0.3/32" ];
-              }
-              {
-                publicKey = desktopPublicWgKey;
-                allowedIPs = [ "10.100.0.4/32" ];
-              }
-            ];
+            peers =
+              let
+                peers = config.networking.custom.wireguard.peers;
+                clientPeers = removeAttrs peers [ "nanorion" ];
+              in
+              lib.mapAttrsToList (_name: peer: {
+                publicKey = peer.publicKey;
+                allowedIPs = [ peer.ip ];
+              }) clientPeers;
           };
         };
       };

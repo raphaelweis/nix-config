@@ -6,7 +6,7 @@
       sops
       disko-server
       boot-server
-      networking-constants
+      networking-shared
       networking-server
       ssh-server
       fail2ban-server

@@ -10,11 +10,16 @@ in
   flake.nixosConfigurations = inputs.self.lib.mkNixos "x86_64-linux" hostname;
 
   flake.modules.nixos.${hostname} =
-    { lib, pkgs, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     {
       networking = {
         hostName = hostname;
-        custom-options.wireguardPeerIp = "10.100.0.2/32";
+        custom.wireguard.peerIp = config.networking.custom.wireguard.peers.${hostname}.ip;
       };
 
       sops.defaultSopsFile = ../../../secrets/${hostname}.yaml;

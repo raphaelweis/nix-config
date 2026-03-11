@@ -13,7 +13,7 @@
       services.nextcloud = {
         enable = true;
         package = pkgs.nextcloud33;
-        hostName = config.networking.custom-options.serverWgIp;
+        hostName = config.networking.custom.wireguard.peers.nanorion.ip;
         database.createLocally = true;
         config = {
           dbtype = "pgsql";
