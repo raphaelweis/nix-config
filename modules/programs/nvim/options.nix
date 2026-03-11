@@ -19,6 +19,7 @@
         undofile = true;
         colorcolumn = "80";
         foldenable = false;
+        showmode = false;
       };
       diagnostic.settings = {
         virtual_text = true;

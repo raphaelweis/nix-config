@@ -34,6 +34,8 @@
             gitsigns
             completion
             diffs
+            bufferline
+            lualine
           ];
         };
       };

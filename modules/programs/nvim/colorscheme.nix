@@ -8,11 +8,15 @@
         italic = {
           strings = false;
         };
-        overrides = {
-          SignColumn = {
-            bg = "NONE";
-          };
+      };
+    };
+    plugins.bufferline.settings.highlights = {
+      tab_selected = {
+        fg = {
+          attribute = "fg";
+          highlight = "GruvboxYellowBold";
         };
+        bold = true;
       };
     };
   };
