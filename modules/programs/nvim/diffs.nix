@@ -11,7 +11,9 @@
       extraPlugins = [ pkgsUnstable.vimPlugins.diffs-nvim ];
       globals = {
         diffs = {
-          fugitive = true;
+          integrations = {
+            fugitive = true;
+          };
         };
       };
     };

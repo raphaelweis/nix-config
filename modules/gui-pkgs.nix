@@ -9,6 +9,7 @@
         quickshell
         netflix
         chromium
+        google-chrome
         thunderbird
         zed-editor
         zathura

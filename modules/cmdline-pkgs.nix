@@ -31,6 +31,7 @@
         jq
         gnumake
         tree
+        claude-code
 
         self.packages.${pkgs.stdenv.hostPlatform.system}.nvim
       ];
