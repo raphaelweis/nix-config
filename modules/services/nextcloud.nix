@@ -28,10 +28,10 @@
       };
     };
 
-  flake.modules.homeManager.nextcloud =
+  flake.modules.nixos.nextcloud =
     { pkgs, ... }:
     {
-      home.packages = with pkgs; [ nextcloud-client ];
+      environment.systemPackages = with pkgs; [ nextcloud-client ];
     };
 
 }

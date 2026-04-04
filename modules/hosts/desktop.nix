@@ -24,37 +24,21 @@
       gnome
       steam
 
-      # misc
-      home-manager
-      sops
-    ];
-    home-manager.sharedModules = [ self.modules.homeManager.desktop ];
-  };
-
-  flake.modules.homeManager.desktop = {
-    imports = with self.modules.homeManager; [
-      # cmdline
-      cmdline-pkgs
-      tmux
-      fzf
-      gh
-      git
+      # programs
       zsh
-      opencode
-
-      # gui
-      gui-pkgs
       vscode
       zen
-      ghostty
       spotify
-      nextcloud
       excalidraw
 
-      # desktop
+      # desktop environment
       fonts
       cursor
       xdg
+
+      # misc
+      sops
+      nextcloud
     ];
   };
 }

@@ -61,12 +61,7 @@ in
         desktop
         ./_hardware-configuration.nix
       ];
-      home-manager.sharedModules = [ self.modules.homeManager.${hostname} ];
 
       system.stateVersion = "25.05";
     };
-
-  flake.modules.homeManager.${hostname} = {
-    home.stateVersion = "25.05";
-  };
 }

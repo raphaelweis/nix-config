@@ -1,8 +1,8 @@
 {
-  flake.modules.homeManager.fonts =
+  flake.modules.nixos.fonts =
     { pkgs, ... }:
     {
-      home.packages = with pkgs; [
+      environment.systemPackages = with pkgs; [
         dejavu_fonts
         inter
         noto-fonts
@@ -19,12 +19,14 @@
           '';
         })
       ];
-      fonts.fontconfig = {
-        enable = true;
-        defaultFonts = {
-          serif = [ "DejaVu Serif" ];
-          sansSerif = [ "DejaVu Sans" ];
-          monospace = [ "JetBrainsMonoNL Nerd Font" ];
+      fonts = {
+        enableDefaultPackages = true;
+        fontconfig = {
+          defaultFonts = {
+            serif = [ "DejaVu Serif" ];
+            sansSerif = [ "DejaVu Sans" ];
+            monospace = [ "JetBrainsMonoNL Nerd Font" ];
+          };
         };
       };
     };

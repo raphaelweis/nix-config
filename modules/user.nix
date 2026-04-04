@@ -29,18 +29,5 @@ in
       programs.zsh.enable = true;
 
       sops.age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
-
-      home-manager.users."${username}" = {
-        imports = [
-          self.modules.homeManager.user
-        ];
-        programs.home-manager.enable = true;
-      };
     };
-
-  flake.modules.homeManager.user = {
-    home = {
-      homeDirectory = "/home/${username}";
-    };
-  };
 }

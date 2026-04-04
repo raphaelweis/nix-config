@@ -1,19 +1,10 @@
-{ self, ... }:
 {
   flake.modules.nixos.cmdline-pkgs =
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [
         vim
-      ];
-    };
-
-  flake.modules.homeManager.cmdline-pkgs =
-    { pkgs, ... }:
-    {
-      home.packages = with pkgs; [
         killall
-        home-manager
         xclip
         ripgrep
         fd
@@ -31,9 +22,9 @@
         jq
         gnumake
         tree
-        claude-code
-
-        self.packages.${pkgs.stdenv.hostPlatform.system}.nvim
+        ollama
+        opencode
+        fzf
       ];
     };
 }

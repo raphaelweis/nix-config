@@ -1,7 +1,7 @@
 {
-  flake.modules.homeManager.spotify =
+  flake.modules.nixos.spotify =
     { pkgs, ... }:
     {
-      home.packages = with pkgs; [ spotify ];
+      environment.systemPackages = with pkgs; [ spotify ];
     };
 }

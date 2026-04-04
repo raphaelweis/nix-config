@@ -1,12 +1,10 @@
 { inputs, ... }:
 {
-  flake.modules.homeManager.zen = {
-    imports = [
-      inputs.zen-browser.homeModules.beta
-    ];
-
-    programs.zen-browser = {
-      enable = true;
+  flake.modules.nixos.zen =
+    { pkgs, ... }:
+    {
+      environment.systemPackages = [
+        inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+      ];
     };
-  };
 }

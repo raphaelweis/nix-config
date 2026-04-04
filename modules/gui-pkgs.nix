@@ -1,8 +1,8 @@
 {
-  flake.modules.homeManager.gui-pkgs =
+  flake.modules.nixos.gui-pkgs =
     { pkgs, ... }:
     {
-      home.packages = with pkgs; [
+      environment.systemPackages = with pkgs; [
         pavucontrol
         postman
         nautilus
