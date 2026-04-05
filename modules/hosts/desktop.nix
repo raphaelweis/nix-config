@@ -14,7 +14,6 @@
       nix-ld
       qt
       nix
-      cmdline-pkgs
       networking-shared
       networking
       flatpak
@@ -27,9 +26,10 @@
       # programs
       zsh
       vscode
-      zen
       spotify
       excalidraw
+      cmdline-pkgs
+      gui-pkgs
 
       # desktop environment
       fonts
