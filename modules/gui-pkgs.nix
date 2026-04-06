@@ -18,7 +18,7 @@
           zathura
           keepassxc
           modrinth-app
-
+          ghostty
         ]
         ++ [
           inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
