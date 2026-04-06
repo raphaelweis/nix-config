@@ -7,7 +7,7 @@ cursor-style-blink = false
 font-family = monospace
 font-size = 10
 gtk-single-instance = true
-gtk-titlebar-hide-when-maximized = true
+gtk-titlebar = false
 keybind = ctrl+enter=unbind
 keybind = performable:alt+c=copy_to_clipboard
 keybind = performable:alt+v=paste_from_clipboard
