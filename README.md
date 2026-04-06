@@ -46,19 +46,6 @@ stow -t ~ dotfiles
 
 To symlink my dotfiles.
 
-## Software I use
-
-| **Tool**            | **Name**                               |
-| ------------------- | -------------------------------------- |
-| Web browser         | [zen-browser](https://zen-browser.app) |
-| Desktop environment | [Gnome](https://www.gnome.org)         |
-| Terminal emulator   | [Ghostty](https://ghostty.org)         |
-| Shell               | [zsh](https://zsh.org)                 |
-| Code editor         | [Neovim](https://neovim.io)            |
-
-Here is a screenshot of my current system:
-![a screenshot of my current desktop with a terminal containing a neofetch output](./assets/desktop_screenshot_28-02-26.png)
-
 ## Rebuild commands
 
 For desktop configurations:

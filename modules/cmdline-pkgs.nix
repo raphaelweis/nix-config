@@ -29,6 +29,7 @@
           fzf
           neovim
           stow
+          gh
 
           # editor tools (lsp, formatters, etc)
           lua-language-server

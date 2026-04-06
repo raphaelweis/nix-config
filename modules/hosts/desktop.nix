@@ -20,7 +20,9 @@
       docker
 
       # desktop
-      gnome
+      niri
+      dconf
+      dms
       steam
 
       # programs
