@@ -46,6 +46,8 @@ stow -t ~ dotfiles
 
 To symlink my dotfiles.
 
+## Software I use
+
 | **Tool**            | **Name**                               |
 | ------------------- | -------------------------------------- |
 | Web browser         | [zen-browser](https://zen-browser.app) |
@@ -69,4 +71,14 @@ For server configurations:
 
 ```bash
 nixos-rebuild switch --flake .#<configuration-name> --target-host "root@<server-ip>"
+```
+
+## Zsh plugin installation
+
+Zsh plugin managers are overkill, I just clone what I need:
+
+```
+git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.zsh/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-history-substring-search ~/.zsh/zsh-history-substring-search
 ```
