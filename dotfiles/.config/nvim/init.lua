@@ -61,6 +61,7 @@ vim.pack.add({
 	"https://github.com/stevearc/oil.nvim",
 	"https://github.com/nvim-tree/nvim-web-devicons",
 	"https://github.com/lewis6991/gitsigns.nvim",
+	"https://github.com/nvim-lualine/lualine.nvim",
 })
 
 -- Colorscheme setup
@@ -189,3 +190,6 @@ require("gitsigns").setup()
 
 -- Fugitive
 vim.keymap.set("n", "<leader>;", "<CMD>Git<CR>")
+
+-- Lualine
+require("lualine").setup()
