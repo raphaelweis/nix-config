@@ -175,6 +175,7 @@ require("nvim-treesitter").install({
 	"markdown_inline",
 	"typescript",
 	"javascript",
+	"python",
 })
 
 -- Oil
