@@ -15,9 +15,14 @@ shell-integration-features = no-cursor
 theme = Gruvbox Dark Hard
 window-padding-x = 5
 window-padding-y = 5
+font-feature = -calt
 
 keybind = ctrl+alt+h=goto_split:left
 keybind = ctrl+alt+j=goto_split:down
 keybind = ctrl+alt+k=goto_split:up
 keybind = ctrl+alt+l=goto_split:right
+keybind = ctrl+cmd+h=goto_split:left
+keybind = ctrl+cmd+j=goto_split:down
+keybind = ctrl+cmd+k=goto_split:up
+keybind = ctrl+cmd+l=goto_split:right
 
