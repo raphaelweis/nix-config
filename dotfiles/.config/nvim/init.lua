@@ -104,8 +104,8 @@ conform.setup({
 		python = { "ruff" },
 		javascript = { "prettierd" },
 		typescript = { "prettierd" },
-    javascriptreact = { "prettierd" },
-    typescriptreact = { "prettierd" },
+		javascriptreact = { "prettierd" },
+		typescriptreact = { "prettierd" },
 		json = { "prettierd" },
 		html = { "prettierd" },
 		css = { "prettierd" },
@@ -177,6 +177,8 @@ require("nvim-treesitter").install({
 	"markdown_inline",
 	"typescript",
 	"javascript",
+	"tsx",
+	"jsx",
 	"python",
 })
 
