@@ -104,6 +104,8 @@ conform.setup({
 		python = { "ruff" },
 		javascript = { "prettierd" },
 		typescript = { "prettierd" },
+    javascriptreact = { "prettierd" },
+    typescriptreact = { "prettierd" },
 		json = { "prettierd" },
 		html = { "prettierd" },
 		css = { "prettierd" },
