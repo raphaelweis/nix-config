@@ -132,6 +132,7 @@ vim.lsp.enable({
 	"cssls",
 	"html",
 	"pyright",
+	"tailwindcss",
 })
 
 vim.lsp.config("lua_ls", {
