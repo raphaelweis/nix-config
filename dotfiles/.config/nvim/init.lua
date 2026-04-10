@@ -110,6 +110,7 @@ conform.setup({
 		html = { "prettierd" },
 		css = { "prettierd" },
 		markdown = { "prettierd" },
+		yaml = { "prettierd" },
 		nix = { "nixfmt" },
 	},
 })
@@ -167,6 +168,11 @@ vim.lsp.config("lua_ls", {
 	end,
 	settings = {
 		Lua = {},
+	},
+})
+vim.lsp.config("eslint", {
+	settings = {
+		quiet = false,
 	},
 })
 
