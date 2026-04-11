@@ -20,12 +20,10 @@
       docker
 
       # desktop
-      niri
-      dconf
-      dms
-      steam
+      gnome
 
       # programs
+      steam
       zsh
       vscode
       spotify

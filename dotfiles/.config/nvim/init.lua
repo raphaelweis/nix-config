@@ -112,6 +112,8 @@ conform.setup({
 		markdown = { "prettierd" },
 		yaml = { "prettierd" },
 		nix = { "nixfmt" },
+		cpp = { "clang-format" },
+		c = { "clang-format" },
 	},
 })
 vim.keymap.set({ "n", "v" }, "<leader>fm", conform.format)
@@ -134,6 +136,7 @@ vim.lsp.enable({
 	"html",
 	"pyright",
 	"tailwindcss",
+	"clangd",
 })
 
 vim.lsp.config("lua_ls", {
@@ -187,6 +190,8 @@ require("nvim-treesitter").install({
 	"tsx",
 	"jsx",
 	"python",
+	"c",
+	"cpp",
 })
 
 -- Oil

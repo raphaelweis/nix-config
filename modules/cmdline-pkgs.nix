@@ -41,6 +41,7 @@
           pyright
           vtsls
           nixfmt
+          clang-tools
         ]
         ++ [ (pkgs.callPackage ../packages/vscode-langservers-extracted.nix { }) ];
     };
