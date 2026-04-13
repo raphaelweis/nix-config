@@ -62,6 +62,7 @@ vim.pack.add({
 	"https://github.com/nvim-tree/nvim-web-devicons",
 	"https://github.com/lewis6991/gitsigns.nvim",
 	"https://github.com/nvim-lualine/lualine.nvim",
+	"https://github.com/barrettruth/diffs.nvim",
 })
 
 -- Colorscheme setup
@@ -215,3 +216,11 @@ vim.keymap.set("n", "<leader>;", "<CMD>Git<CR>")
 
 -- Lualine
 require("lualine").setup()
+
+-- diffs.nvim
+vim.g.diffs = {
+	integrations = {
+		fugitive = true,
+		gitsigns = true,
+	},
+}

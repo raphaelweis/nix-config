@@ -9,6 +9,10 @@
       "rev": "086a40dc7ed8242c03be9f47fbcee68699cc2395",
       "src": "https://github.com/stevearc/conform.nvim"
     },
+    "diffs.nvim": {
+      "rev": "77a5c7518bab5e396a778b96e46795a7c879131b",
+      "src": "https://github.com/barrettruth/diffs.nvim"
+    },
     "gitsigns.nvim": {
       "rev": "07ff073b84d3ef48f286529c36658a65d1a64707",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
