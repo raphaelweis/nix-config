@@ -203,7 +203,12 @@ require("oil").setup({
 vim.keymap.set("n", "<leader>e", "<CMD>Oil<CR>")
 
 -- Gitsigns
-require("gitsigns").setup()
+local gitsigns = require("gitsigns")
+gitsigns.setup()
+vim.keymap.set("n", "<leader>gr", function()
+	gitsigns.toggle_linehl()
+	gitsigns.toggle_deleted()
+end, { desc = "Toggle git review mode" })
 
 -- Fugitive
 vim.keymap.set("n", "<leader>;", "<CMD>Git<CR>")
