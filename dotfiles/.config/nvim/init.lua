@@ -138,6 +138,7 @@ vim.lsp.enable({
 	"pyright",
 	"tailwindcss",
 	"clangd",
+	"terraformls",
 })
 
 vim.lsp.config("lua_ls", {
@@ -193,6 +194,7 @@ require("nvim-treesitter").install({
 	"python",
 	"c",
 	"cpp",
+	"terraform",
 })
 
 -- Oil
