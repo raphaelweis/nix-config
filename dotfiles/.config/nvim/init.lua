@@ -63,6 +63,8 @@ vim.pack.add({
 	"https://github.com/lewis6991/gitsigns.nvim",
 	"https://github.com/nvim-lualine/lualine.nvim",
 	"https://github.com/barrettruth/diffs.nvim",
+	{ src = "https://github.com/nvim-neo-tree/neo-tree.nvim", version = vim.version.range("3") },
+	"https://github.com/MunifTanjim/nui.nvim",
 })
 
 -- Colorscheme setup
@@ -115,6 +117,7 @@ conform.setup({
 		nix = { "nixfmt" },
 		cpp = { "clang-format" },
 		c = { "clang-format" },
+		terraform = { "terraform_fmt" },
 	},
 })
 vim.keymap.set({ "n", "v" }, "<leader>fm", conform.format)
@@ -203,7 +206,18 @@ require("oil").setup({
 		show_hidden = true,
 	},
 })
-vim.keymap.set("n", "<leader>e", "<CMD>Oil<CR>")
+vim.keymap.set("n", "<leader>E", "<CMD>Oil<CR>")
+
+-- Neo-tree
+require("neo-tree").setup({
+	filesystem = {
+		filtered_items = {
+			visible = true,
+			hide_dotfiles = false,
+		},
+	},
+})
+vim.keymap.set("n", "<leader>e", "<CMD>Neotree toggle<CR>")
 
 -- Gitsigns
 local gitsigns = require("gitsigns")
