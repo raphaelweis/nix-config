@@ -13,6 +13,7 @@ vim.opt.colorcolumn = "80"
 vim.opt.foldenable = false
 vim.opt.showmode = false
 vim.opt.clipboard:append("unnamedplus")
+vim.opt.fillchars:append({ diff = " " })
 
 -- Keymaps
 vim.keymap.set("n", "<ESC>", "<CMD>noh<CR>")
@@ -54,7 +55,6 @@ vim.pack.add({
 	"https://github.com/nvim-telescope/telescope-fzf-native.nvim",
 	"https://github.com/windwp/nvim-autopairs",
 	"https://github.com/stevearc/conform.nvim",
-	"https://github.com/tpope/vim-fugitive",
 	{ src = "https://github.com/Saghen/blink.cmp", version = vim.version.range("*") },
 	"https://github.com/neovim/nvim-lspconfig",
 	"https://github.com/nvim-treesitter/nvim-treesitter",
@@ -62,9 +62,12 @@ vim.pack.add({
 	"https://github.com/nvim-tree/nvim-web-devicons",
 	"https://github.com/lewis6991/gitsigns.nvim",
 	"https://github.com/nvim-lualine/lualine.nvim",
-	"https://github.com/barrettruth/diffs.nvim",
+	-- "https://github.com/barrettruth/diffs.nvim",
 	{ src = "https://github.com/nvim-neo-tree/neo-tree.nvim", version = vim.version.range("3") },
 	"https://github.com/MunifTanjim/nui.nvim",
+	"https://github.com/dlyongemallo/diffview.nvim",
+	"https://github.com/romgrk/barbar.nvim",
+	"https://github.com/rickhowe/diffchar.vim",
 })
 
 -- Colorscheme setup
@@ -221,22 +224,45 @@ vim.keymap.set("n", "<leader>e", "<CMD>Neotree toggle<CR>")
 
 -- Gitsigns
 local gitsigns = require("gitsigns")
-gitsigns.setup()
-vim.keymap.set("n", "<leader>gr", function()
-	gitsigns.toggle_linehl()
-	gitsigns.toggle_deleted()
-end, { desc = "Toggle git review mode" })
-
--- Fugitive
-vim.keymap.set("n", "<leader>;", "<CMD>Git<CR>")
+gitsigns.setup({
+	signs = {
+		add = { text = "▌" },
+		change = { text = "▌" },
+		delete = { text = "▌" },
+		topdelete = { text = "▌" },
+		changedelete = { text = "▌" },
+		untracked = { text = "▌" },
+	},
+	signs_staged = {
+		add = { text = "▌" },
+		change = { text = "▌" },
+		delete = { text = "▌" },
+		topdelete = { text = "▌" },
+		changedelete = { text = "▌" },
+		untracked = { text = "▌" },
+	},
+})
 
 -- Lualine
 require("lualine").setup()
 
--- diffs.nvim
-vim.g.diffs = {
-	integrations = {
-		fugitive = true,
-		gitsigns = true,
+-- diffview.nvim
+require("diffview").setup({
+	view = {
+		foldlevel = 99,
 	},
-}
+})
+vim.api.nvim_create_autocmd("OptionSet", {
+	pattern = "diff",
+	callback = function()
+		vim.schedule(function()
+			vim.api.nvim_set_hl(0, "dcDiffText", {})
+		end)
+	end,
+})
+vim.keymap.set("n", "<leader>gr", "<CMD>DiffviewToggle<CR>")
+
+-- barbar.nvim
+require("barbar").setup({
+	animation = false,
+})
