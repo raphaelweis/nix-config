@@ -5,7 +5,7 @@ cursor-invert-fg-bg = true
 cursor-style = block
 cursor-style-blink = false
 font-family = monospace
-font-size = 10
+font-size = 14
 gtk-single-instance = true
 keybind = ctrl+enter=unbind
 keybind = performable:alt+c=copy_to_clipboard
@@ -15,6 +15,7 @@ theme = Gruvbox Dark Hard
 window-padding-x = 5
 window-padding-y = 5
 font-feature = -calt
+notify-on-command-finish = always
 
 keybind = ctrl+alt+h=goto_split:left
 keybind = ctrl+alt+j=goto_split:down
