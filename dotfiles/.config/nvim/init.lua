@@ -112,8 +112,6 @@ conform.setup({
 		typescript = { "prettierd" },
 		javascriptreact = { "prettierd" },
 		typescriptreact = { "prettierd" },
-		json = { "prettierd" },
-		html = { "prettierd" },
 		css = { "prettierd" },
 		markdown = { "prettierd" },
 		yaml = { "prettierd" },

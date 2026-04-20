@@ -19,6 +19,7 @@
           keepassxc
           modrinth-app
           ghostty
+          (callPackage ../packages/helium.nix {})
         ]
         ++ [
           inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
