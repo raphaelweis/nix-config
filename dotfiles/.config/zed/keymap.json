@@ -1,0 +1,80 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace && !Terminal",
+    "bindings": {
+      "alt-p": "file_finder::Toggle",
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "alt-shift-p": "command_palette::Toggle",
+    },
+  },
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "space f m": "editor::Format",
+    },
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "alt-w": [
+        "pane::CloseActiveItem",
+        {
+          "close_pinned": false,
+        },
+      ],
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "alt-r": "workspace::ToggleRightDock",
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "alt-?": "agent::ToggleFocus",
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "alt-shift-e": "project_panel::ToggleFocus",
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "alt-shift-g": "git_panel::ToggleFocus",
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "alt-b": "workspace::ToggleLeftDock",
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "alt-/": "terminal_panel::Toggle",
+    },
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "alt-t": "workspace::NewTerminal",
+    },
+  },
+]

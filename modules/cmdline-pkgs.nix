@@ -42,6 +42,7 @@
           vtsls
           nixfmt
           clang-tools
+          nil
         ]
         ++ [ (pkgs.callPackage ../packages/vscode-langservers-extracted.nix { }) ];
     };
