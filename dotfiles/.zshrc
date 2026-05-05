@@ -25,8 +25,8 @@ alias ts="tmux-sessionizer"
 alias la="ls -la"
 alias vim="nvim"
 
-export EDITOR="nvim"
-export PATH="$PATH:$HOME/.local/bin:$HOME/.cargo/bin"
+export EDITOR="zed"
+export PATH="/opt/homebrew/bin:$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
 
 setopt PROMPT_SUBST
 PROMPT='%F{yellow}%~%f $ '
